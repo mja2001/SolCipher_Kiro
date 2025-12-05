@@ -71,4 +71,4 @@ SolCipher Kiro is a privacy-first decentralized application (dApp) for secure, e
 ### License
 MIT License. See LICENSE for details.
 
-Built for Devpost hackathon with Kiro integration. Questions? Open an issue!
+Built for Devpost hackathon with Kiro integration.
