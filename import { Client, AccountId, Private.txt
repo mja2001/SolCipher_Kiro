@@ -1,0 +1,23 @@
+import { Client, AccountId, PrivateKey, TopicCreateTransaction, TopicMessageSubmitTransaction } from "@hashgraph/sdk";
+
+export function getHederaClient() {
+  const client = Client.forTestnet();
+  client.setOperator(process.env.HEDERA_ACCOUNT_ID, process.env.HEDERA_PRIVATE_KEY);
+  return client;
+}
+
+export async function createTopic() {
+  const client = getHederaClient();
+  const tx = await new TopicCreateTransaction().execute(client);
+  const receipt = await tx.getReceipt(client);
+  return receipt.topicId;
+}
+
+export async function logEvent(topicId, message) {
+  const client = getHederaClient();
+  const tx = await new TopicMessageSubmitTransaction({
+    topicId,
+    message
+  }).execute(client);
+  await tx.getReceipt(client);
+}

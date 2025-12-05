@@ -1,0 +1,18 @@
+import { Web3Storage } from 'web3-storage'
+
+export function getWeb3StorageClient() {
+  return new Web3Storage({ token: process.env.WEB3_STORAGE_TOKEN })
+}
+
+export async function uploadToIPFS(file) {
+  const client = getWeb3StorageClient()
+  const cid = await client.put([file])
+  return cid
+}
+
+export async function getFileFromIPFS(cid) {
+  const client = getWeb3StorageClient()
+  const res = await client.get(cid)
+  const files = await res.files()
+  return files[0]
+}

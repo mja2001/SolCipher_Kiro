@@ -1,0 +1,8 @@
+# KILT SDK v0.33 Steering Doc
+
+- Use Kilt.connect() for init
+- Did.resolve(didUri)
+- Attestation.authorizeClaim(cType, claim)
+- Attestation.writeToChain()
+- Revocation via registry
+- Verify with VerifiablePresentation.verify()

@@ -1,0 +1,10 @@
+import FileUploader from '../components/FileUploader';
+
+export default function Upload() {
+  return (
+    <div>
+      <h1>Upload Page</h1>
+      <FileUploader />
+    </div>
+  );
+}

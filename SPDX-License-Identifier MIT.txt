@@ -1,0 +1,25 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract AccessLog is Ownable {
+    event AccessGranted(address indexed granter, string cid, address indexed recipient, uint256 expiry);
+    event AccessRevoked(address indexed granter, string cid, address indexed recipient);
+
+    mapping(string => mapping(address => uint256)) public accessRights;
+
+    function grantAccess(string memory cid, address recipient, uint256 expiry) public {
+        accessRights[cid][recipient] = expiry;
+        emit AccessGranted(msg.sender, cid, recipient, expiry);
+    }
+
+    function revokeAccess(string memory cid, address recipient) public {
+        delete accessRights[cid][recipient];
+        emit AccessRevoked(msg.sender, cid, recipient);
+    }
+
+    function hasAccess(string memory cid, address recipient) public view returns (bool) {
+        return accessRights[cid][recipient] > block.timestamp;
+    }
+}

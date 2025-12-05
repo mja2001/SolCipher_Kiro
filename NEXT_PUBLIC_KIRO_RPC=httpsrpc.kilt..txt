@@ -1,0 +1,5 @@
+NEXT_PUBLIC_KIRO_RPC=https://rpc.kilt.io
+HEDERA_TESTNET_URL=https://testnet.hashio.io/api
+HEDERA_ACCOUNT_ID=
+HEDERA_PRIVATE_KEY=
+WEB3_STORAGE_TOKEN=

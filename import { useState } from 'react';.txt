@@ -1,0 +1,23 @@
+import { useState } from 'react';
+import { encryptFile } from '../lib/encryption';
+import { uploadToIPFS } from '../lib/ipfs';
+
+export default function FileUploader({ onUpload }) {
+  const [file, setFile] = useState(null);
+  const [password, setPassword] = useState('');
+
+  const handleUpload = async () => {
+    if (!file || !password) return;
+    const encryptedBlob = await encryptFile(file, password);
+    const cid = await uploadToIPFS(new File([encryptedBlob], 'encrypted.bin'));
+    onUpload(cid);
+  };
+
+  return (
+    <div>
+      <input type="file" onChange={e => setFile(e.target.files[0])} />
+      <input type="password" placeholder="Encryption Password" value={password} onChange={e => setPassword(e.target.value)} />
+      <button onClick={handleUpload}>Upload Encrypted File</button>
+    </div>
+  );
+}

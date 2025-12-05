@@ -1,0 +1,27 @@
+{
+  "name": "solcipher-kiro",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@kiltprotocol/sdk-js": "^0.33.0",
+    "@hashgraph/sdk": "^2.38.0",
+    "ethers": "^6.10.0",
+    "next": "14.2.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^3.4.3",
+    "web3-storage": "^4.5.5"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.3",
+    "postcss": "^8.4.38",
+    "autoprefixer": "^10.4.19"
+  }
+}

@@ -1,0 +1,29 @@
+import * as Kilt from '@kiltprotocol/sdk-js'
+
+export async function connectKilt() {
+  await Kilt.connect('wss://peregrine.kilt.io')
+}
+
+export async function createLightDid(mnemonic) {
+  const did = Kilt.Did.LightDidDetails.fromMnemonic({ mnemonic })
+  return did
+}
+
+export async function issueCredential(issuerDid, claimerDid, ctype, claimContents) {
+  const credential = await Kilt.Credential.create({
+    ctype,
+    claims: claimContents,
+    attester: issuerDid.uri
+  })
+
+  const attestation = await Kilt.Attestation.fromCredentialAndDid(credential, issuerDid.uri)
+  return { credential, attestation }
+}
+
+export async function revokeCredential(attestationId) {
+  await Kilt.Attestation.revoke(attestationId)
+}
+
+export async function verifyPresentation(presentation) {
+  return await Kilt.VerifiablePresentation.verify(presentation)
+}
